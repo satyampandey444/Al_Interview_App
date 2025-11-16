@@ -890,9 +890,10 @@ def health_check():
 # ============================================================================
 # STARTUP
 # ============================================================================
-
 if __name__ == '__main__':
-    port = int(os.getenv('FLASK_PORT', 5001))
+    # Render gives a PORT environment variable
+    port = int(os.getenv('PORT', 5001))
+
     print(f"🚀 Starting Interview Management API server on port {port}")
     print(f"📚 API Endpoints:")
     print(f"  Authentication:")
@@ -913,7 +914,6 @@ if __name__ == '__main__':
     print(f"    • POST /candidate/test/complete - Complete test")
     
     try:
-        app.run(debug=True, host='0.0.0.0', port=port)
+        app.run(host='0.0.0.0', port=port)
     finally:
         close_database()
-
